@@ -771,8 +771,8 @@ defaults write com.google.Chrome.canary PMPrintingExpandedStateForPrint2 -bool t
 ###############################################################################
 
 # Install Sublime Text settings
-cp -r init/Monokai-Contrast.thTheme ~/Library/Application\ Support/Sublime\ Text*/Packages/User/ 2> /dev/null
-cp -r init/Preferences.sublime-settings ~/Library/Application\ Support/Sublime\ Text*/Packages/User/Preferences.sublime-settings 2> /dev/null
+cp -r init/Monokai-Contrast.thTheme ~/Library/Application\ Support/Sublime\ Text\ 3/Packages/User/ 2> /dev/null
+cp -r init/Preferences.sublime-settings ~/Library/Application\ Support/Sublime\ Text\ 3/Packages/User/ 2> /dev/null
 
 ###############################################################################
 # Transmission.app                                                            #
