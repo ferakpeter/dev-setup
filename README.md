@@ -1,35 +1,6 @@
 dev-setup
 ============
 
-<p align="center">
-  <img src="https://raw.githubusercontent.com/donnemartin/dev-setup-resources/master/res/repo-header.gif">
-</p>
-
-## Motivation
-
-Setting up a new developer machine can be an **ad-hoc, manual, and time-consuming** process.  `dev-setup` aims to **simplify** the process with **easy-to-understand instructions** and **dotfiles/scripts** to **automate the setup** of the following:
-
-* **OS X updates and Xcode Command Line Tools**
-* **OS X defaults** geared towards developers
-* **Developer tools**: Vim, bash, tab completion, curl, git, GNU core utils, Python, Ruby, etc
-* **Developer apps**: iTerm2, Sublime Text, Atom, VirtualBox, Vagrant, Docker, Chrome, etc
-* **Python data analysis**: IPython Notebook, NumPy, Pandas, Scikit-Learn, Matplotlib, etc
-* **Big Data platforms**: Spark (with IPython Notebook integration) and MapReduce
-* **Cloud services**: Amazon Web Services (Boto, AWS CLI, S3cmd, etc) and Heroku
-* **Common data stores**: MySQL, PostgreSQL, MongoDB, Redis, and Elasticsearch
-* **Javascript web development**: Node.js, JSHint, and Less
-* **Android development**: Java, Android SDK, Android Studio, IntelliJ IDEA
-
-### But...I Don't Need All These Tools!
-
-**`dev-setup` is geared to be more of an organized *reference* of various developer tools.**
-
-**You're *not* meant to install everything.**
-
-If you're interested in automation, `dev-setup` provides a customizable [setup script](#single-setup-script).  There's really no one-size-fits-all solution for developers so you're encouraged to make tweaks to suit your needs.
-
-[Credits](#credits): This repo builds on the awesome work from [Mathias Bynens](https://github.com/mathiasbynens) and [Nicolas Hery](https://github.com/nicolashery).
-
 ### For Automation, What About Vagrant, Docker, or Boxen?
 
 [Vagrant](#vagrant) and [Docker](#docker) are great tools and are set up by this repo. I've found that Vagrant works well to ensure dev matches up with test and production tiers. I've only started playing around with Docker for side projects and it looks very promising. However, for Mac users, Docker and Vagrant both rely on **virtual machines**, which have their own considerations/pros/cons.
@@ -59,8 +30,6 @@ This repo takes a more **light-weight** approach to automation using a combinati
     * Installs common Homebrew formulae and apps
 * [osx.sh script](#osxsh-script)
     * Sets up OS X defaults geared towards developers
-* [pydata.sh script](#pydatash-script)
-    * Sets up python for data analysis
 * [aws.sh script](#awssh-script)
     * Sets up Spark, Hadoop MapReduce, and Amazon Web Services
 * [datastores.sh script](#datastoressh-script)
@@ -73,33 +42,14 @@ This repo takes a more **light-weight** approach to automation using a combinati
 ## Section 2: General Apps and Tools
 
 * [Sublime Text](#sublime-text)
-* [Atom](#atom)
 * [Terminal Customization](#terminal-customization)
-* [iTerm2](#iterm2)
+* [HyperTerm](#hyperterm)
 * [Vim](#vim)
 * [Git](#git)
-* [VirtualBox](#virtualbox)
-* [Vagrant](#vagrant)
 * [Docker](#docker)
 * [Homebrew](#homebrew)
-* [Ruby and rbenv](#ruby-and-rbenv)
 * [Python](#python)
 * [Pip](#pip)
-* [Virtualenv](#virtualenv)
-* [Virtualenvwrapper](#virtualenvwrapper)
-
-## Section 3: Python Data Analysis
-
-* [Anaconda](#anaconda)
-* [IPython Notebook](#ipython-notebook)
-* [NumPy](#numpy)
-* [Pandas](#pandas)
-* [Matplotlib](#matplotlib)
-* [Seaborn](#seaborn)
-* [Scikit-learn](#scikit-learn)
-* [SciPy](#scipy)
-* [Flask](#flask)
-* [Bokeh](#bokeh)
 
 ## Section 4: Big Data, AWS, and Heroku
 
@@ -121,10 +71,9 @@ This repo takes a more **light-weight** approach to automation using a combinati
 
 ## Section 5: Data Stores
 
-* [MySQL](#mysql)
-* [MySQL Workbench](#mysql-workbench)
 * [MongoDB](#mongodb)
 * [Redis](#redis)
+* [PostGreSQL](#postgresql)
 * [Elasticsearch](#elasticsearch)
 
 ## Section 6: JavaScript Web Development
@@ -155,7 +104,7 @@ This repo takes a more **light-weight** approach to automation using a combinati
 
 ##### Clone the Repo
 
-    $ git clone https://github.com/donnemartin/dev-setup.git && cd dev-setup
+    $ git clone https://github.com/ferakpeter/dev-setup.git && cd dev-setup
 
 ##### Run the .dots Script with Command Line Arguments
 
@@ -171,13 +120,13 @@ Run `bootstrap.sh`, `osxprep.sh`, `brew.sh`, and `osx.sh`:
 
     $ ./.dots bootstrap osxprep brew osx
 
-Run `bootstrap.sh`, `osxprep.sh`, `brew.sh`, and `osx.sh`, `pydata.sh`, `aws.sh`, and `datastores.sh`:
+Run `bootstrap.sh`, `osxprep.sh`, `brew.sh`, and `osx.sh`, `aws.sh`, and `datastores.sh`:
 
-    $ ./.dots bootstrap osxprep brew osx pydata aws datastores
+    $ ./.dots bootstrap osxprep brew osx aws datastores
 
 #### Running without Git
 
-    $ curl -O https://raw.githubusercontent.com/donnemartin/dev-setup/master/.dots && ./.dots [Add ARGS Here]
+    $ curl -O https://raw.githubusercontent.com/ferakpeter/dev-setup/master/.dots && ./.dots [Add ARGS Here]
 
 #### Scripts
 
@@ -191,8 +140,6 @@ Run `bootstrap.sh`, `osxprep.sh`, `brew.sh`, and `osx.sh`, `pydata.sh`, `aws.sh`
     * Installs common Homebrew formulae and apps
 * [osx.sh](https://github.com/donnemartin/dev-setup/blob/master/osx.sh)
     * Sets up OS X defaults geared towards developers
-* [pydata.sh](https://github.com/donnemartin/dev-setup/blob/master/pydata.sh)
-    * Sets up python for data analysis
 * [aws.sh](https://github.com/donnemartin/dev-setup/blob/master/aws.sh)
     * Sets up Spark, Hadoop MapReduce, and Amazon Web Services
 * [datastores.sh](https://github.com/donnemartin/dev-setup/blob/master/datastores.sh)
@@ -212,7 +159,7 @@ Run `bootstrap.sh`, `osxprep.sh`, `brew.sh`, and `osx.sh`, `pydata.sh`, `aws.sh`
 * `.dots` runs `brew.sh`, which takes awhile to complete as some formulae need to be installed from source.
 * **When `.dots` completes, be sure to restart your computer for all updates to take effect.**
 
-I encourage you to read through Section 1 so you have a better idea of what each installation script does.  The following discussions describe in greater detail what is executed when running the [.dots](https://github.com/donnemartin/dev-setup/blob/master/.dots) script.
+I encourage you to read through Section 1 so you have a better idea of what each installation script does.  The following discussions describe in greater detail what is executed when running the [.dots](https://github.com/ferakpeter/dev-setup/blob/master/.dots) script.
 
 ### bootstrap.sh script
 
@@ -351,33 +298,6 @@ Run the `osx.sh` script:
     $ ./osx.sh
 
 **For your terminal customization to take full effect, quit and re-start the terminal.**
-
-### pydata.sh script
-
-<p align="center">
-  <img src="https://raw.githubusercontent.com/donnemartin/dev-setup-resources/master/res/pydata.png">
-  <br/>
-</p>
-
-To set up a development environment to work with Python and data analysis without relying on the more heavyweight [Anaconda](#anaconda) distribution, run the `pydata.sh` script:
-
-    $ ./pydata.sh
-
-This will install [Virtualenv](#virtualenv) and [Virtualenvwrapper](#virtualenvwrapper).  It will then set up two virtual environments loaded with the packages you will need to work with data in Python 2 and Python 3.
-
-To switch to the Python 2 virtual environment, run the following Virtualenvwrapper command:
-
-    $ workon py2-data
-
-To switch to the Python 3 virtual environment, run the following Virtualenvwrapper command:
-
-    $ workon py3-data
-
-Then start working with the installed packages, for example:
-
-    $ ipython notebook
-
-[Section 3: Python Data Analysis](#section-3-python-data-analysis) describes the installed packages and usage.
 
 ### aws.sh script
 
@@ -528,24 +448,14 @@ Since we spend so much time in the terminal, we should try to make it a more ple
 
 The [bootstrap.sh script](#bootstrapsh-script) and [osx.sh script](#osxsh-script) contain terminal customizations.
 
-### iTerm2
+### hyperTerm
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/donnemartin/dev-setup-resources/master/res/iterm2.png">
+  <img src="https://github.com/zeit/hyperterm-art/raw/master/branding/HyperTerm-banner.png">
   <br/>
 </p>
 
-I prefer iTerm2 over the stock Terminal, as it has some some additional [great features](https://www.iterm2.com/features.html). Download and install iTerm2 (the newest version, even if it says "beta release").
-
-In Finder, drag and drop the iTerm Application file into the Applications folder.
-
-You can now launch iTerm, through the Launchpad for instance.
-
-Let's just quickly change some preferences. In iTerm > Preferences..., under the tab General, uncheck Confirm closing multiple sessions and Confirm "Quit iTerm2 (Cmd+Q)" command under the section Closing.
-
-In the tab Profiles, create a new one with the "+" icon, and rename it to your first name for example. Then, select Other Actions... > Set as Default. Under the section Window, change the size to something better, like Columns: 125 and Rows: 35.  I also like to set General > Working Directory > Reuse previous session's directory.  Finally, I change the wy the option key works so that I can quickly jump between words as described [here](https://coderwall.com/p/h6yfda/use-and-to-jump-forwards-backwards-words-in-iterm-2-on-os-x).
-
-When done, hit the red "X" in the upper left (saving is automatic in OS X preference panes). Close the window and open a new one to see the size change.
+https://github.com/zeit/hyperterm
 
 #### Configuration
 
