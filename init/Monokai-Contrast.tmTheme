@@ -286,7 +286,7 @@
 			<key>settings</key>
 			<dict>
 				<key>background</key>
-				<string>#F92672</string>
+				<string>#1f5f9f</string>
 				<key>fontStyle</key>
 				<string></string>
 				<key>foreground</key>
