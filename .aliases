@@ -143,3 +143,6 @@ alias reload="exec $SHELL -l"
 
 # Jenkins
 alias stopjenkins="launchctl unload /Library/LaunchDaemons/org.jenkins-ci.plist"
+
+# git extra
+alias cleantags="git tag -l | xargs git tag -d && git fetch --tags"
